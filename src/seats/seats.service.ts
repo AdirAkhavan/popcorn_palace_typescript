@@ -1,26 +1,71 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Seat } from './entities/seat.entity';
 import { CreateSeatDto } from './dto/create-seat.dto';
-import { UpdateSeatDto } from './dto/update-seat.dto';
 
 @Injectable()
 export class SeatsService {
-  create(createSeatDto: CreateSeatDto) {
-    return 'This action adds a new seat';
+  constructor(
+    @InjectRepository(Seat)
+    private readonly seatRepository: Repository<Seat>,
+  ) {}
+
+  // Create seats for a specific showtime
+  async create(createSeatDto: CreateSeatDto): Promise<Seat> {
+    const seat = this.seatRepository.create(createSeatDto);
+    return this.seatRepository.save(seat);
   }
 
-  findAll() {
-    return `This action returns all seats`;
+  // Find all seats for a specific showtime
+  async findAllByShowtime(showtimeId: string): Promise<Seat[]> {
+    return this.seatRepository.find({ where: { showtime: { id: showtimeId } } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} seat`;
+  // Find a seat by ID
+  async findOne(id: string): Promise<Seat> {
+    const seat = await this.seatRepository.findOne({ where: { id } });
+    if (!seat) {
+      throw new NotFoundException('Seat not found');
+    }
+    return seat;
   }
 
-  update(id: number, updateSeatDto: UpdateSeatDto) {
-    return `This action updates a #${id} seat`;
+  // Check if a seat is already booked for a showtime
+  async checkSeatAvailability(showtimeId: string, seatNumber: string): Promise<boolean> {
+    const seat = await this.seatRepository.findOne({
+      where: { showtime: { id: showtimeId }, seat_number: seatNumber },
+    });
+    return seat ? !seat.booked : true;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} seat`;
+  // Book a seat for a showtime
+  async bookSeat(seatId: string, customerId: string): Promise<Seat> {
+    const seat = await this.findOne(seatId);
+    
+    // Ensure the seat isn't already booked
+    if (seat.booked) {
+      throw new ConflictException('This seat has already been booked.');
+    }
+
+    // Mark the seat as booked and assign the customer
+    seat.booked = true;
+    seat.customer_id = customerId;
+    return this.seatRepository.save(seat);
+  }
+
+  // Cancel a seat booking
+  async cancelBooking(seatId: string): Promise<Seat> {
+    const seat = await this.findOne(seatId);
+    
+    // Ensure the seat is already booked before canceling
+    if (!seat.booked) {
+      throw new ConflictException('This seat is not booked.');
+    }
+
+    // Cancel the booking
+    seat.booked = false;
+    seat.customer_id = null;
+    return this.seatRepository.save(seat);
   }
 }

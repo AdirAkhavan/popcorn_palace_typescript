@@ -1,11 +1,10 @@
-import { IsString, IsInt, Min, Max } from 'class-validator';
+import { IsString, IsInt, IsPositive } from 'class-validator';
 
 export class CreateTheaterDto {
   @IsString()
   name: string;
 
   @IsInt()
-  @Min(1)
-  @Max(10000)
+  @IsPositive()
   capacity: number;
 }
