@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import { Movie } from './movies/entities/movie.entity';  // Import your entities here
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -8,7 +7,7 @@ export const AppDataSource = new DataSource({
   username: 'popcorn-palace',
   password: 'popcorn-palace',
   database: 'popcorn-palace',
-  entities: [Movie],
+  entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,   // Disable in production!
   logging: true,
 });
