@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, ConflictException } from '@nestjs/common
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Seat } from './entities/seat.entity';
+import { Showtime } from 'src/showtimes/entities/showtime.entity';
 import { CreateSeatDto } from './dto/create-seat.dto';
 
 @Injectable()
@@ -9,22 +10,45 @@ export class SeatsService {
   constructor(
     @InjectRepository(Seat)
     private readonly seatRepository: Repository<Seat>,
+    
+    @InjectRepository(Showtime) // Inject Showtime repository
+    private readonly showtimeRepository: Repository<Showtime>,
   ) {}
 
   // Create seats for a specific showtime
   async create(createSeatDto: CreateSeatDto): Promise<Seat> {
-    const seat = this.seatRepository.create(createSeatDto);
+    // Retrieve the Showtime entity from the database using showtime_id
+    const showtime = await this.showtimeRepository.findOne({
+      where: { id: createSeatDto.showtime_id },
+    });
+    
+    
+    // If no showtime is found, throw an exception
+    if (!showtime) {
+      throw new NotFoundException('Showtime not found');
+    }
+
+    // Create the seat and assign the showtime entity
+    const seat = this.seatRepository.create({
+      ...createSeatDto,
+      showtime,  // Assign the showtime entity
+    });
+
+    // Save and return the seat
     return this.seatRepository.save(seat);
   }
 
-  // Find all seats for a specific showtime
+  // Find all seats for a specific showtime, including the showtime relation
   async findAllByShowtime(showtimeId: string): Promise<Seat[]> {
-    return this.seatRepository.find({ where: { showtime: { id: showtimeId } } });
+    return this.seatRepository.find({
+      where: { showtime: { id: showtimeId } },
+      relations: ['showtime'], // Include the showtime relation in the response
+    });
   }
 
   // Find a seat by ID
   async findOne(id: string): Promise<Seat> {
-    const seat = await this.seatRepository.findOne({ where: { id } });
+    const seat = await this.seatRepository.findOne({ where: { id }, relations: ['showtime'] }); // Include the showtime relation
     if (!seat) {
       throw new NotFoundException('Seat not found');
     }
