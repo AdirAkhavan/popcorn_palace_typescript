@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Movie } from 'src/movies/entities/movie.entity';
 import { Theater } from 'src/theaters/entities/theater.entity';
-import { IsDateString, IsNumber, IsPositive } from 'class-validator';
 
 @Entity()
 export class Showtime {
@@ -17,15 +16,11 @@ export class Showtime {
   theater: Theater;
 
   @Column()
-  @IsDateString()
   start_time: string;
 
   @Column()
-  @IsDateString()
   end_time: string;
 
   @Column()
-  @IsNumber()
-  @IsPositive()
   price: number;
 }

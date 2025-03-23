@@ -1,10 +1,10 @@
-import { IsDateString, IsInt, IsNumber, IsPositive, IsString } from 'class-validator';
+import { IsDateString, IsInt, IsNumber, IsPositive, IsString, IsUUID } from 'class-validator';
 
 export class CreateShowtimeDto {
-  @IsInt()
-  movie_id: number;
+  @IsUUID()
+  movie_id: string;
 
-  @IsString()
+  @IsUUID()
   theater_id: string;
 
   @IsDateString()

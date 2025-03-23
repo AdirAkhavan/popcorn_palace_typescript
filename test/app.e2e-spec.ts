@@ -30,7 +30,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Sci-Fi',
       duration: 148,
       rating: 4.5,
-      releaseYear: 2010,
+      release_year: 2010,
     };
 
     const response = await request(app.getHttpServer())
@@ -43,7 +43,7 @@ describe('MoviesController (e2e)', () => {
     expect(response.body.genre).toBe(createMovieDto.genre);
     expect(response.body.duration).toBe(createMovieDto.duration);
     expect(response.body.rating).toBe(createMovieDto.rating);
-    expect(response.body.releaseYear).toBe(createMovieDto.releaseYear);
+    expect(response.body.release_year).toBe(createMovieDto.release_year);
   });
 
   it('should return a 400 error if rating is less than 1 (POST /movies)', async () => {
@@ -52,7 +52,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Sci-Fi',
       duration: 148,
       rating: 0,  // Invalid rating
-      releaseYear: 2010,
+      release_year: 2010,
     };
 
     const response = await request(app.getHttpServer())
@@ -69,7 +69,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Sci-Fi',
       duration: 148,
       rating: 6,  // Invalid rating
-      releaseYear: 2010,
+      release_year: 2010,
     };
 
     const response = await request(app.getHttpServer())
@@ -86,7 +86,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Sci-Fi',
       duration: 169,
       rating: 4.7,
-      releaseYear: 2014,
+      release_year: 2014,
     };
 
     const createResponse = await request(app.getHttpServer())
@@ -113,7 +113,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Thriller',
       duration: 113,
       rating: 4.2,
-      releaseYear: 2000,
+      release_year: 2000,
     };
 
     const createResponse = await request(app.getHttpServer())
@@ -138,7 +138,7 @@ describe('MoviesController (e2e)', () => {
       genre: 'Thriller',
       duration: 113,
       rating: 4.2,
-      releaseYear: 2000,
+      release_year: 2000,
     };
 
     const createResponse = await request(app.getHttpServer())

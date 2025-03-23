@@ -19,20 +19,20 @@ export class MoviesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<Movie> {
+  findOne(@Param('id') id: string): Promise<Movie> {
     return this.moviesService.findOne(id);
   }
 
   @Put(':id')
   update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateMovieDto: UpdateMovieDto,
   ): Promise<Movie> {
     return this.moviesService.update(id, updateMovieDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Promise<void> {
+  remove(@Param('id') id: string): Promise<void> {
     return this.moviesService.remove(id);
   }
 }

@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsOptional, IsPositive, Min, Max, IsNumber } from 'class-validator';
+import { IsString, IsInt, IsPositive, Min, Max, IsNumber } from 'class-validator';
 
 export class CreateMovieDto {
   @IsString()
@@ -12,13 +12,12 @@ export class CreateMovieDto {
   duration: number;
 
   @IsNumber()
-  @IsPositive()
-  @IsOptional()
   @Min(1)
   @Max(5)
   rating: number;
 
   @IsInt()
   @IsPositive()
-  releaseYear: number;
+  @Min(1888)
+  release_year: number;
 }

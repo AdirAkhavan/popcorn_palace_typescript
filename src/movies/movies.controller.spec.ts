@@ -42,10 +42,10 @@ describe('MoviesController', () => {
         genre: 'Sci-Fi',
         duration: 148,
         rating: 5,
-        releaseYear: 2010,
+        release_year: 2010,
       };
 
-      const createdMovie = { ...createMovieDto, id: 1 };
+      const createdMovie = { ...createMovieDto, id: '1' };
       mockMoviesService.create.mockResolvedValue(createdMovie);
 
       const result = await controller.create(createMovieDto);
@@ -57,8 +57,8 @@ describe('MoviesController', () => {
   describe('findAll', () => {
     it('should return an array of movies', async () => {
       const movies = [
-        { id: 1, title: 'Inception', genre: 'Sci-Fi', duration: 148, rating: 5, releaseYear: 2010 },
-        { id: 2, title: 'The Dark Knight', genre: 'Action', duration: 152, rating: 4, releaseYear: 2008 },
+        { id: '1', title: 'Inception', genre: 'Sci-Fi', duration: 148, rating: 5, release_year: 2010 },
+        { id: '2', title: 'The Dark Knight', genre: 'Action', duration: 152, rating: 4, release_year: 2008 },
       ];
       
       mockMoviesService.findAll.mockResolvedValue(movies);
@@ -71,32 +71,32 @@ describe('MoviesController', () => {
 
   describe('findOne', () => {
     it('should return a movie by id', async () => {
-      const movie = { id: 1, title: 'Inception', genre: 'Sci-Fi', duration: 148, rating: 5, releaseYear: 2010 };
+      const movie = { id: '1', title: 'Inception', genre: 'Sci-Fi', duration: 148, rating: 5, release_year: 2010 };
 
       mockMoviesService.findOne.mockResolvedValue(movie);
 
-      const result = await controller.findOne(1);
+      const result = await controller.findOne('1');
       expect(result).toEqual(movie);
-      expect(mockMoviesService.findOne).toHaveBeenCalledWith(1);
+      expect(mockMoviesService.findOne).toHaveBeenCalledWith('1');
     });
   });
 
   describe('update', () => {
     it('should update a movie', async () => {
       const updateMovieDto: UpdateMovieDto = { title: 'Inception Updated' };
-      const updatedMovie = { id: 1, title: 'Inception Updated', genre: 'Sci-Fi', duration: 148, rating: 5, releaseYear: 2010 };
+      const updatedMovie = { id: '1', title: 'Inception Updated', genre: 'Sci-Fi', duration: 148, rating: 5, release_year: 2010 };
 
       mockMoviesService.update.mockResolvedValue(updatedMovie);
 
-      const result = await controller.update(1, updateMovieDto);
+      const result = await controller.update('1', updateMovieDto);
       expect(result).toEqual(updatedMovie);
-      expect(mockMoviesService.update).toHaveBeenCalledWith(1, updateMovieDto);
+      expect(mockMoviesService.update).toHaveBeenCalledWith('1', updateMovieDto);
     });
   });
 
   describe('remove', () => {
     it('should remove a movie', async () => {
-      const movieId = 1;
+      const movieId = '1';
 
       mockMoviesService.remove.mockResolvedValue(undefined);
 

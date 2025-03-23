@@ -17,5 +17,5 @@ export class Seat {
   booked: boolean;
 
   @Column({ nullable: true })
-  customer_id: string; // Optional, track customer ID for the booking (e.g., user ID)
+  customer_id: string;
 }
