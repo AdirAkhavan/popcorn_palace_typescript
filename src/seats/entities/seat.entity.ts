@@ -10,7 +10,6 @@ export class Seat {
 
   @ManyToOne(() => Showtime, (showtime) => showtime.id, { eager: true })
   @JoinColumn({ name: 'showtime_id' })
-  @Exclude()
   showtime: Showtime;
 
   @Column()

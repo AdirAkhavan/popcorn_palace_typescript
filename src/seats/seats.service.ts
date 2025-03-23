@@ -42,13 +42,13 @@ export class SeatsService {
   async findAllByShowtime(showtimeId: string): Promise<Seat[]> {
     return this.seatRepository.find({
       where: { showtime: { id: showtimeId } },
-      relations: ['showtime'], // Include the showtime relation in the response
+      relations: ['showtime'],
     });
   }
 
   // Find a seat by ID
   async findOne(id: string): Promise<Seat> {
-    const seat = await this.seatRepository.findOne({ where: { id }, relations: ['showtime'] }); // Include the showtime relation
+    const seat = await this.seatRepository.findOne({ where: { id }, relations: ['showtime'] });
     if (!seat) {
       throw new NotFoundException('Seat not found');
     }
