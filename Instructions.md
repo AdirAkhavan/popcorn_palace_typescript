@@ -41,13 +41,30 @@ Look for messages indicating that the app has started successfully, such as:
 [Nest] 19 - 03/24/2025, 5:57:50 PM     LOG [NestFactory] Starting Nest application...
 ```
 
-### 4. Running Tests (E2E)
-You can run the end-to-end (e2e) tests inside the Docker container with the following command:
+### 4. Running Tests
+
+#### 4.1 Unit Tests
+To run unit tests inside the app container, use:
+
+```bash
+docker-compose exec app npm run test
+```
+
+#### 4.2 E2E Tests
+Run the end-to-end tests inside the Docker container with:
+
 ```bash
 docker-compose exec app npm run test:e2e
 ```
 
-This will run the e2e tests inside the app container, using the project's dependencies within the container environment.
+#### 4.3 Manual Testing
+Use Postman to send requests to the base URL:
+
+```bash
+http://localhost:3000
+```
+
+You can test the available endpoints (e.g., GET, POST, PUT, DELETE).
 
 ### 5. Stopping the Containers
 To stop the containers, you can run:

@@ -10,9 +10,13 @@ Ticket Booking: Handle ticket reservations with no double bookings.
 
 This project is containerized using Docker and Docker Compose, making it easy to set up and run in any environment.
 
-## Entity Relationship Diagram
+## Project Entity Relationship Diagram
 
 ![Project Logo](./ERD.png)
+
+## Note:
+Due to lack of time, unit tests were only implemented for the movies resource, and not many e2e tests were implemented.
+Most testing was done manually using Postman.
 
 ## Running the Project
 For detailed instructions on how to set up, run, and test the project using Docker, check the instructions.md.
