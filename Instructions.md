@@ -95,6 +95,7 @@ If you encounter any issues, make sure the database is running and reachable, an
 # Some objects for manual testing:
 
 ### 1. Create a Movie
+```json
 {
   "title": "Inception",
   "genre": "Sci-Fi",
@@ -102,14 +103,18 @@ If you encounter any issues, make sure the database is running and reachable, an
   "rating": 4.8,
   "release_year": 2010
 }
+```
 
 ### 2. Create a Theater
+```json
 {
   "name": "Grand Cinema",
   "capacity": 200
 }
+```
 
 ### 3. Create a Showtime
+```json
 {
   "movie_id": "<movie_id>",
   "theater_id": "<theater_id>",
@@ -117,9 +122,12 @@ If you encounter any issues, make sure the database is running and reachable, an
   "end_time": "2025-03-23T20:30:00.000Z",
   "price": 12.5
 }
+```
 
 ### 4. Create a Seat
+```json
 {
   "showtime_id": "<showtime_id>",
   "seat_number": "A1"
 }
+```
