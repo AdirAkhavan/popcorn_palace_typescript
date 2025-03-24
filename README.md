@@ -16,7 +16,7 @@ This project is containerized using Docker and Docker Compose, making it easy to
 
 ## Note:
 Due to lack of time, unit and e2e tests were only implemented for the movies resource.
-Right before the deadline, I noticed the e2e stopped working, but didn't have time to fix them.
+Right before the deadline, I noticed that somehow I broke the e2e tests, but didn't have time to investigate and fix them.
 Most testing was done manually using Postman.
 
 ## Running the Project
