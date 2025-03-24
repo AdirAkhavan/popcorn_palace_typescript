@@ -15,7 +15,7 @@ This project is containerized using Docker and Docker Compose, making it easy to
 ![Project Logo](./ERD.png)
 
 ## Note:
-Due to lack of time, unit tests were only implemented for the movies resource, and not many e2e tests were implemented.
+Due to lack of time, unit and e2e tests were only implemented for the movies resource.
 Most testing was done manually using Postman.
 
 ## Running the Project
