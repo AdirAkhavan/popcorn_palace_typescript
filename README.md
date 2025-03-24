@@ -12,7 +12,7 @@ This project is containerized using Docker and Docker Compose, making it easy to
 
 ## Entity Relationship Diagram
 
-![Project Logo](./logo.png)
+![Project Logo](./ERD.png)
 
 ## Running the Project
 For detailed instructions on how to set up, run, and test the project using Docker, check the instructions.md.
