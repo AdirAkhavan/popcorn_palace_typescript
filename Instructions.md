@@ -12,8 +12,8 @@ Ensure you have the following installed on your system:
 Clone the repository to your local machine:
 
 ```sh
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/AdirAkhavan/popcorn_palace_typescript.git
+cd popcorn_palace_typescript
 ```
 
 ### 2. Build and Start the Containers
