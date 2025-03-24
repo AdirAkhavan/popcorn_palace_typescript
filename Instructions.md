@@ -91,3 +91,35 @@ docker-compose down -v
 ## Troubleshooting
 
 If you encounter any issues, make sure the database is running and reachable, and check the application logs for more detailed error messages.
+
+# Some objects for manual testing:
+
+### 1. Create a Movie
+{
+  "title": "Inception",
+  "genre": "Sci-Fi",
+  "duration": 148,
+  "rating": 4.8,
+  "release_year": 2010
+}
+
+### 2. Create a Theater
+{
+  "name": "Grand Cinema",
+  "capacity": 200
+}
+
+### 3. Create a Showtime
+{
+  "movie_id": "<movie_id>",
+  "theater_id": "<theater_id>",
+  "start_time": "2025-03-23T18:00:00.000Z",
+  "end_time": "2025-03-23T20:30:00.000Z",
+  "price": 12.5
+}
+
+### 4. Create a Seat
+{
+  "showtime_id": "<showtime_id>",
+  "seat_number": "A1"
+}
