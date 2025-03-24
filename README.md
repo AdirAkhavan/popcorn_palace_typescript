@@ -1,3 +1,24 @@
+# Popcorn Palace
+Popcorn Palace is a movie ticket booking system designed to manage movie showtimes and ticket reservations. Built with NestJS and PostgreSQL, this application allows users to view available movies, manage showtimes, and book tickets. The app ensures that there are no overlapping showtimes for the same theater, making the booking process efficient and reliable.
+
+## Features
+Movie Management: Add, update, delete, and fetch movies.
+
+Showtime Management: Manage movie showtimes with constraints on overlapping schedules.
+
+Ticket Booking: Handle ticket reservations with no double bookings.
+
+This project is containerized using Docker and Docker Compose, making it easy to set up and run in any environment.
+
+## Entity Relationship Diagram
+
+![Project Logo](./logo.png)
+
+## Running the Project
+For detailed instructions on how to set up, run, and test the project using Docker, check the instructions.md.
+
+# Original README file content below:
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
