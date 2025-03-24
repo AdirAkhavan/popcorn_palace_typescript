@@ -5,7 +5,6 @@
 Ensure you have the following installed on your system:
 
 - [Docker](https://www.docker.com/)
-- 
 
 ## Setup Instructions
 
